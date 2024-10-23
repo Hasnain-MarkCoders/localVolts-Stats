@@ -1,0 +1,56 @@
+/* Market Stats Table */
+.market-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.market-stats-table th,
+.market-stats-table td {
+  padding: 15px; /* Add more space around the text */
+  border: 1px solid #f4f4f4;
+}
+
+.market-stats-table th {
+  text-align: center;
+  background-color: #847c7c;
+}
+
+/* Sell Price Table */
+.sell-price-table {
+  width: 50%; /* Adjust width as needed */
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sell-price-table th,
+.sell-price-table td {
+  padding: 15px; /* Add spacing around sell price values */
+  border: 1px solid #ddd;
+}
+
+.sell-price-table th {
+  text-align: center;
+  background-color: #847c7c;
+}
+
+/* Node Data Table */
+.node-data-table {
+  margin: 0 auto; /* Center the table */
+  width: 80%; /* Optional: Adjust the width as needed */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.node-data-table th,
+.node-data-table td {
+  padding: 15px; /* Add spacing around subheadings */
+  border: 1px solid #ddd;
+}
+
+.node-data-table th {
+  text-align: center;
+  background-color: #847c7c;
+}

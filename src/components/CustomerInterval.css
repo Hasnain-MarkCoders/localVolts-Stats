@@ -1,0 +1,24 @@
+/* Customer Interval Table */
+.interval-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 12px; /* Reduce font size for better visibility */
+  }
+  
+  .interval-table th,
+  .interval-table td {
+    padding: 10px; /* Reduce padding for a more compact layout */
+    border: 1px solid #f4f4f4;
+  }
+  
+  .interval-table th {
+    text-align: center;
+    background-color: #847c7c;
+    font-size: 14px; /* Slightly larger font size for headers */
+  }
+  
+  .interval-table td {
+    text-align: center; /* Ensure content is centered for readability */
+  }
+  
