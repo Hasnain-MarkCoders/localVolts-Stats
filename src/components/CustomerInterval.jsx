@@ -12,7 +12,7 @@ const CustomerInterval = () => {
 				const response = await axios.get(
 					`${API_BASE_URL}/interval`
 				);
-				setIntervalData(response.data);
+				setIntervalData(response.data.reverse());
 			} catch (error) {
 				console.error("Error fetching interval data:", error);
 			}
