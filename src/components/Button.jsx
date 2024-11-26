@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { COLORS, STYLES } from '../../styles'
 import { Button as MuiButton } from '@mui/material'
 
@@ -12,6 +12,8 @@ const Button = ({
     fullWidth=false,
     sx={},
     type = "button",
+    isLoadingTexts="Loading...",
+    isLoading=false,
 }) => {
   return (
     <MuiButton 
@@ -27,7 +29,7 @@ const Button = ({
     }}
     variant={variant}
     onClick={cb}>
-        {title}
+        {isLoading?isLoadingTexts:title}
     </MuiButton>
   )
 }

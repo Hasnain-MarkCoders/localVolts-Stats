@@ -157,10 +157,10 @@ const AllCustomersPage = () => {
                                         <strong>NMI</strong>
                                     </TableCell>
                                     <TableCell l sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
-                                        <strong>Cost All Fixed Up (cents)</strong>
+                                        <strong> Cost Fixed Up AVG</strong>
                                     </TableCell>
                                     <TableCell l sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
-                                        <strong>Earning All Fixed Up (cents)</strong>
+                                        <strong> Earning Fixed Up  AVG</strong>
                                     </TableCell>
                                     {/* <TableCell l sx={{ color: COLORS.WHITE, fontWeight: '600', fontSize: '16px' }} align="right">
                                         <strong>Details</strong>

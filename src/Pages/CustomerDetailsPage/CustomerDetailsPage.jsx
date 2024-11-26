@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useMemo } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import React, { useEffect, useLayoutEffect, useMemo } from 'react'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../api/axiosInstance';
 import { getTodayDate } from '../../utils/navigation';
@@ -7,6 +7,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { COLORS } from '../../../styles';
 import Button from '../../components/Button';
 import { Bar, CartesianGrid, ComposedChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ROUTES } from '../../../routesName';
 const fetchCustomerData = async ({ queryKey }) => {
     const [_key, nmi] = queryKey;
     const response = await axiosInstance.get(`/nmi-graph`, {
@@ -20,9 +21,10 @@ const fetchCustomerData = async ({ queryKey }) => {
 
 const CustomerDetailsPage = () => {
     const { state } = useLocation()
+    const navigate = useNavigate()
+    const {pathname} = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
     const {
-
         data,
         isLoading,
         isError,
@@ -40,11 +42,17 @@ const CustomerDetailsPage = () => {
     });
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (state) {
             setSearchParams({ nmi: state })
         }
-    }, [])
+       
+    }, [state])
+    useLayoutEffect(()=>{
+            if (!searchParams.get("nmi")) {
+                navigate(ROUTES.CUSTOMERS)
+            }
+    },[searchParams])
     const chartData = useMemo(() => data?.[0]?.earnings?.map((earning, index) => ({
         // name: `Time: ${new Date(data[0]?.interval[index]).toLocaleTimeString()} and Date:  ${new Date(data[0]?.interval[index]).toLocaleDateString()}`,  // Example, you can customize the time label as per your data
         name: `${new Date(data[0]?.interval[index]).toLocaleTimeString({

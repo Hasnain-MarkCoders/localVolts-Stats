@@ -10,26 +10,31 @@ import { saveProfile } from '../../redux/slices/authSlice';
 import Button from '../../components/Button';
 
 // React Query function to handle the login request
-const loginRequest = async (credentials, setLoading) => {
-  try{
-    const response = await axios.post(`${API_BASE_URL}/login`, credentials);
-    return response.data;
 
-  }catch(err){
-    setLoading(false);
-    throw err;
-  }
-};
 
 const Login = () => {
   const dispatch = useDispatch();
-
+const [isLoading, setIsLoading] =  useState(false)
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate(); // React Router hook for navigation
-  const [loading, setLoading] = useState(false);
+
+  const loginRequest = async (credentials) => {
+    try{
+      setIsLoading(true)
+      const response = await axios.post(`${API_BASE_URL}/login`, credentials);
+      return response.data;
+  
+    }catch(err){
+      throw err;
+    }
+    finally{
+      setIsLoading(false)
+    }
+  };
+
   const mutation = useMutation({
     mutationFn: loginRequest,
     onError: (err) => {
@@ -43,7 +48,7 @@ const Login = () => {
     },
   });
 
-  const { mutate, isLoading, isError, error } = mutation;
+  const { mutate, isError, error } = mutation;
 
   // Handle form validation
   const handleSubmit = (e) => {
@@ -72,9 +77,10 @@ const Login = () => {
 
     if (valid) {
       const credentials = { email, password };
-      mutate(credentials, setLoading);
+      mutate(credentials);
     }
   };
+
 
 
   return (
@@ -107,6 +113,10 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <TextField
+               InputLabelProps={{
+                shrink: true, // This will keep the label on top
+              }}
+             className='custom_input_field_style'
               label="Email"
               variant="outlined"
               fullWidth
@@ -118,6 +128,10 @@ const Login = () => {
             />
 
             <TextField
+               InputLabelProps={{
+                shrink: true, // This will keep the label on top
+              }}
+              className='custom_input_field_style'
               label="Password"
               type="password"
               variant="outlined"
@@ -129,10 +143,11 @@ const Login = () => {
               helperText={passwordError}
             />
             <Button
+            isLoading={isLoading}
               fullWidth={true}
               sx={{ mt: 2 }}
-              disabled={loading}
-              title={loading ? 'Logging in...' : 'Login'}
+              disabled={isLoading}
+              title={'Login'}
               cb={(e) => { handleSubmit(e) }}
               type={"submit"}
             />
