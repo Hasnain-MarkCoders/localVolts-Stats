@@ -1,17 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Stats from "./Pages/Stats/Stats"
-import Interval from "./Pages/Interval/Interval"
-
-
+import AuthRoutes from "./Pages/AuthRoutes/AuthRoutes"
+import { useSelector } from "react-redux"
+import DashboardRoutes from "./Pages/DashboardRoutes/DashboardRoutes"
 function App() {
-
+  const { auth = false } = useSelector(state => state?.auth)
+  if (auth) {
+    return (
+      <DashboardRoutes />
+    )
+  }
   return (
-    <BrowserRouter>
-    <Routes>
-        <Route path="/" element={<Stats />} />
-        <Route path="interval" element={<Interval />} />
-    </Routes>
-  </BrowserRouter>
+    <AuthRoutes />
   )
 }
 
