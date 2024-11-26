@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  TextField, Box, Typography, Alert } from '@mui/material';
+import { TextField, Box, Typography, Alert } from '@mui/material';
 import { useMutation } from '@tanstack/react-query'; // Updated import
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,15 @@ import { saveProfile } from '../../redux/slices/authSlice';
 import Button from '../../components/Button';
 
 // React Query function to handle the login request
-const loginRequest = async (credentials) => {
-  const response = await axios.post(`${API_BASE_URL}/login`, credentials);
-  return response.data;
+const loginRequest = async (credentials, setLoading) => {
+  try{
+    const response = await axios.post(`${API_BASE_URL}/login`, credentials);
+    return response.data;
+
+  }catch(err){
+    setLoading(false);
+    throw err;
+  }
 };
 
 const Login = () => {
@@ -23,7 +29,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate(); // React Router hook for navigation
-
+  const [loading, setLoading] = useState(false);
   const mutation = useMutation({
     mutationFn: loginRequest,
     onError: (err) => {
@@ -66,7 +72,7 @@ const Login = () => {
 
     if (valid) {
       const credentials = { email, password };
-      mutate(credentials);
+      mutate(credentials, setLoading);
     }
   };
 
@@ -123,12 +129,12 @@ const Login = () => {
               helperText={passwordError}
             />
             <Button
-            fullWidth={true}
-            sx={{ mt: 2 }}
-            disabled={isLoading}
-            title={isLoading ? 'Logging in...' : 'Login'}
-            cb={(e)=>{handleSubmit(e)}}
-            type={"submit"}
+              fullWidth={true}
+              sx={{ mt: 2 }}
+              disabled={loading}
+              title={loading ? 'Logging in...' : 'Login'}
+              cb={(e) => { handleSubmit(e) }}
+              type={"submit"}
             />
           </Box>
         </form>

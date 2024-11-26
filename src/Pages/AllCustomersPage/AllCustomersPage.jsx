@@ -28,7 +28,7 @@ const fetchDetails = async ({ queryKey }) => {
         params: {
             page: page,
             limit: limit,
-            // date:getTodayDate()
+            date:getTodayDate()
         },
     });
     return response.data;

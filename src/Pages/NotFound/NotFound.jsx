@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import pageNotFound from "./../../assets/404.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../routesName";
+import Button from "../../components/Button";
 
 const NotFound = () => {
     const { auth = false } = useSelector(state => state.auth)
@@ -95,13 +96,13 @@ const NotFound = () => {
                     or might never have existed.
                 </Typography>
                 <Button
-                    onClick={handleNavigate}
+                 fullWidth={false}
+                 sx={{ mt: 2 }}
+                 cb={(e) => { handleNavigate(e) }}
+                 type={"submit"}
                     variant="contained"
-                    sx={{
-                        mt: 4,
-
-                        background: "primary.main"
-                    }}>{auth ? "Go to Home page" : "Go to Login page"} </Button>
+                    title={auth ? "Go to Home page" : "Go to Login page"}
+                    />
             </Box>
 
             <img
