@@ -29,6 +29,7 @@ const fetchDetails = async ({ queryKey }) => {
             page: page,
             limit: limit,
             date:getTodayDate()
+            
         },
     });
     return response.data;
@@ -148,21 +149,21 @@ const AllCustomersPage = () => {
                     )}
                     <TableContainer 
                     
-                    sx={{ boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '12px' }}
+                    sx={{ boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)', borderRadius: '12px', mt:4 }}
                     component={Paper}>
                         <Table aria-label="details table">
                             <TableHead>
                                 <TableRow sx={{ backgroundColor: COLORS.GRAY }} >
-                                    <TableCell l sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}>
+                                    <TableCell  sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}>
                                         <strong>NMI</strong>
                                     </TableCell>
-                                    <TableCell l sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
+                                    <TableCell  sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
                                         <strong> Cost Fixed Up AVG</strong>
                                     </TableCell>
-                                    <TableCell l sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
+                                    <TableCell  sx={{ color: COLORS.BLACK, fontWeight: '600', fontSize: '16px' }}align="right">
                                         <strong> Earning Fixed Up  AVG</strong>
                                     </TableCell>
-                                    {/* <TableCell l sx={{ color: COLORS.WHITE, fontWeight: '600', fontSize: '16px' }} align="right">
+                                    {/* <TableCell  sx={{ color: COLORS.WHITE, fontWeight: '600', fontSize: '16px' }} align="right">
                                         <strong>Details</strong>
                                     </TableCell> */}
                                 </TableRow>
