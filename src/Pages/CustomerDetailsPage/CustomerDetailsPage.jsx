@@ -55,7 +55,7 @@ const CustomerDetailsPage = () => {
 
     });
     const periodQueries = useQueries({
-        queries: ['7', '28', 'all'].map(period => ({
+        queries: ['6', '28', 'all'].map(period => ({
             queryKey: ['get_cost_values', searchParams.get("nmi"), period],
             queryFn: fetchCustomerDataOverTheTime,
             staleTime: 5 * 60 * 1000,
