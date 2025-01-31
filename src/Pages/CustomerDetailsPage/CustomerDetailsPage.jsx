@@ -16,7 +16,7 @@ const fetchCustomerData = async ({ queryKey }) => {
     const response = await axiosInstance.get(`/nmi-graph`, {
         params: {
             nmi,
-            date: getTodayDate()
+            // date: getTodayDate()
         },
     });
     return response.data;
@@ -26,7 +26,7 @@ const fetchCustomerDataOverTheTime = async ({ queryKey }) => {
     const response = await axiosInstance.get(`/get-cost-values`, {
         params: {
             nmi,
-            date: getTodayDate(),
+            // date: getTodayDate(),
             period
         },
     });
